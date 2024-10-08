@@ -679,7 +679,13 @@ section h2 {
 .navbar {
     background-color: rgba(12, 24, 36, 0.9);
     transition: all 0.3s ease;
-    padding: 15px 0;
+    padding: 15px 0; /* Add padding to top and bottom */
+}
+
+/* You can also add padding to the sides if needed */
+.navbar .container {
+    padding-left: 15px;
+    padding-right: 15px;
 }
 
 .navbar-brand {
@@ -751,6 +757,20 @@ section h2 {
     .navbar-nav .nav-item {
         margin-left: 0;
         margin-bottom: 10px;
+    }
+}
+
+/* For larger screens */
+@media (min-width: 992px) {
+    .navbar {
+        padding: 20px 0;
+    }
+}
+
+/* For smaller screens */
+@media (max-width: 991px) {
+    .navbar {
+        padding: 10px 0;
     }
 }
 
