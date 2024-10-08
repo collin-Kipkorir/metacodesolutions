@@ -44,7 +44,7 @@
             </div>
         </div>
     </section>
-
+   
     <!-- About Us Section -->
     <section id="about" class="about-section">
         <div class="container">
@@ -54,9 +54,9 @@
                     <p class="lead">Innovating the digital landscape since 2010</p>
                     <p>At Metacode Solutions, we're passionate about creating cutting-edge software solutions that drive business growth and enhance user experiences. Our team of expert developers and designers work tirelessly to bring your ideas to life.</p>
                     <ul class="about-features">
-                        <li><i class="fas fa-check-circle"></i> 6+ years of industry experience</li>
-                        <li><i class="fas fa-check-circle"></i> 10+ successful projects delivered</li>
-                        <li><i class="fas fa-check-circle"></i> Team of 5+ skilled professionals</li>
+                        <li><i class="fas fa-check-circle"></i> 10+ years of industry experience</li>
+                        <li><i class="fas fa-check-circle"></i> 100+ successful projects delivered</li>
+                        <li><i class="fas fa-check-circle"></i> Team of 50+ skilled professionals</li>
                     </ul>
                     <a href="#contact" class="btn btn-primary">Get in Touch</a>
                 </div>
@@ -84,9 +84,10 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                    </div>
             </div>
         </div>
+        
     </section>
 
     <!-- Services Section -->
@@ -100,15 +101,16 @@
                     </div>
                     <h3>Mobile App Development</h3>
                     <p>Custom Android and iOS applications tailored to your business needs.</p>
-                    <a href="#" class="service-link">Learn More <i class="fas fa-arrow-right"></i></a>
+                    <a href="#" class="service-link" data-bs-toggle="modal" data-bs-target="#mobileAppModal">Learn More <i class="fas fa-arrow-right"></i></a>
                 </div>
+                <!-- Repeat for other services -->
                 <div class="service-card">
                     <div class="service-icon">
                         <i class="fas fa-laptop-code"></i>
                     </div>
                     <h3>Web Development</h3>
                     <p>Responsive and dynamic websites that engage your audience.</p>
-                    <a href="#" class="service-link">Learn More <i class="fas fa-arrow-right"></i></a>
+                    <a href="#" class="service-link" data-bs-toggle="modal" data-bs-target="#webDevModal">Learn More <i class="fas fa-arrow-right"></i></a>
                 </div>
                 <div class="service-card">
                     <div class="service-icon">
@@ -116,20 +118,95 @@
                     </div>
                     <h3>Software Consulting</h3>
                     <p>Expert guidance to optimize your software development processes.</p>
-                    <a href="#" class="service-link">Learn More <i class="fas fa-arrow-right"></i></a>
+                    <a href="#" class="service-link" data-bs-toggle="modal" data-bs-target="#consultingModal">Learn More <i class="fas fa-arrow-right"></i></a>
                 </div>
-                <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fas fa-cloud"></i>
-                    </div>
-                    <h3>Cloud Solutions</h3>
-                    <p>Scalable cloud infrastructure and migration services.</p>
-                    <a href="#" class="service-link">Learn More <i class="fas fa-arrow-right"></i></a>
-                </div>
+                <!-- Add the other two service cards here -->
             </div>
         </div>
     </section>
 
+    <!-- Service Modals -->
+    <div class="modal fade" id="mobileAppModal" tabindex="-1" aria-labelledby="mobileAppModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="mobileAppModalLabel">Mobile App Development</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p>Our mobile app development service includes:</p>
+                    <ul>
+                        <li>Custom iOS and Android app development</li>
+                        <li>User-centric design and intuitive interfaces</li>
+                        <li>Integration with backend systems and APIs</li>
+                        <li>App store submission and optimization</li>
+                        <li>Ongoing maintenance and support</li>
+                    </ul>
+                    <p>We use the latest technologies and best practices to deliver high-quality, scalable mobile applications that meet your business objectives.</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <a href="#contact" class="btn btn-primary" data-bs-dismiss="modal">Contact Us</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Web Development Modal -->
+    <div class="modal fade" id="webDevModal" tabindex="-1" aria-labelledby="webDevModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="webDevModalLabel">Web Development</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p>Our web development services include:</p>
+                    <ul>
+                        <li>Responsive website design and development</li>
+                        <li>Custom web application development</li>
+                        <li>E-commerce solutions</li>
+                        <li>Content Management Systems (CMS)</li>
+                        <li>API development and integration</li>
+                        <li>Web performance optimization</li>
+                        <li>SEO-friendly development practices</li>
+                    </ul>
+                    <p>We use modern technologies and frameworks to create fast, secure, and scalable web solutions that meet your business objectives and provide an excellent user experience.</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <a href="#contact" class="btn btn-primary" data-bs-dismiss="modal">Contact Us</a>
+                </div>
+            </div>
+        </div>
+    </div>
+<!-- Software Consulting Modal -->
+<div class="modal fade" id="consultingModal" tabindex="-1" aria-labelledby="consultingModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="consultingModalLabel">Software Consulting</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>Our software consulting services offer:</p>
+                <ul>
+                    <li>Software architecture design and review</li>
+                    <li>Agile methodology implementation and coaching</li>
+                    <li>DevOps practices and toolchain optimization</li>
+                    <li>Code quality and performance audits</li>
+                    <li>Technology stack selection and evaluation</li>
+                    <li>Team upskilling and best practices workshops</li>
+                </ul>
+                <p>Our experienced consultants work closely with your team to optimize your software development processes, improve code quality, and accelerate your project delivery.</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <a href="#contact" class="btn btn-primary" data-bs-dismiss="modal">Contact Us</a>
+            </div>
+        </div>
+    </div>
+</div>
     <!-- Portfolio -->
     <section id="portfolio" class="py-5">
         <div class="container">
@@ -352,18 +429,21 @@
                             <div class="form-group">
                                 <label for="name">Name</label>
                                 <input type="text" class="form-control" id="name" required>
+                               
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="email">Email</label>
                                 <input type="email" class="form-control" id="email" required>
+                               
                             </div>
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="message">Message</label>
                         <textarea class="form-control" id="message" rows="4" required></textarea>
+                       
                     </div>
                     <button type="submit" class="btn btn-primary submit-btn">Send Message</button>
                 </form>
@@ -418,6 +498,7 @@
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.5/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="js/script.js"></script>
 </body>
 </html>
