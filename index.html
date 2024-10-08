@@ -6,6 +6,55 @@
     <title>Metacode Solutions</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="css/styles.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        :root {
+          --primary-color: #ffa500;
+        }
+
+        .btn-orange {
+          background-color: var(--primary-color);
+          border-color: var(--primary-color);
+          color: white;
+        }
+
+        .btn-orange:hover {
+          background-color: #e69400;
+          border-color: #e69400;
+          color: white;
+        }
+
+        .text-orange {
+          color: var(--primary-color);
+        }
+
+        /* Update other elements that use the primary color */
+        .navbar-dark {
+          background-color: var(--primary-color);
+        }
+
+        .section-title::after {
+          background-color: var(--primary-color);
+        }
+
+        /* Add more custom styles as needed */
+        .navbar {
+            background-color: #0c1824 !important;
+        }
+
+        .navbar.scrolled {
+            background-color: #0c1824 !important;
+        }
+
+        .navbar-dark .navbar-nav .nav-link {
+            color: rgba(255,255,255,.8);
+        }
+
+        .navbar-dark .navbar-nav .nav-link:hover,
+        .navbar-dark .navbar-nav .nav-link:focus {
+            color: rgba(255,255,255,1);
+        }
+    </style>
 </head>
 <body>
     <!-- Navbar -->
@@ -39,7 +88,7 @@
             <h1>Innovative Software Solutions for the Modern World</h1>
             <p>Your partner in digital transformation.</p>
             <div class="hero-buttons">
-                <a href="#services" class="btn btn-primary">View Our Services</a>
+                <a href="#services" class="btn btn-orange">View Our Services</a>
                 <a href="#contact" class="btn btn-secondary">Get a Quote</a>
             </div>
         </div>
@@ -58,7 +107,7 @@
                         <li><i class="fas fa-check-circle"></i> 100+ successful projects delivered</li>
                         <li><i class="fas fa-check-circle"></i> Team of 50+ skilled professionals</li>
                     </ul>
-                    <a href="#contact" class="btn btn-primary">Get in Touch</a>
+                    <a href="#contact" class="btn btn-orange">Get in Touch</a>
                 </div>
                 <div class="about-image">
                     <div class="team-grid">
@@ -146,7 +195,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <a href="#contact" class="btn btn-primary" data-bs-dismiss="modal">Contact Us</a>
+                    <a href="#contact" class="btn btn-orange" data-bs-dismiss="modal">Contact Us</a>
                 </div>
             </div>
         </div>
@@ -175,7 +224,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <a href="#contact" class="btn btn-primary" data-bs-dismiss="modal">Contact Us</a>
+                    <a href="#contact" class="btn btn-orange" data-bs-dismiss="modal">Contact Us</a>
                 </div>
             </div>
         </div>
@@ -202,7 +251,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <a href="#contact" class="btn btn-primary" data-bs-dismiss="modal">Contact Us</a>
+                <a href="#contact" class="btn btn-orange" data-bs-dismiss="modal">Contact Us</a>
             </div>
         </div>
     </div>
@@ -220,7 +269,7 @@
                             <h3>Website Project</h3>
                             <p>A responsive e-commerce website.</p>
                             <div class="portfolio-links">
-                                <a href="https://example.com" target="_blank" class="btn btn-primary">Visit Website</a>
+                                <a href="https://example.com" target="_blank" class="btn btn-orange">Visit Website</a>
                                 <a href="#" class="btn btn-secondary" data-toggle="modal" data-target="#sourcecodeModal1">Buy Source Code</a>
                             </div>
                         </div>
@@ -234,7 +283,7 @@
                             <h3>Android App</h3>
                             <p>A fitness tracking application.</p>
                             <div class="portfolio-links">
-                                <a href="path/to/app.apk" download class="btn btn-primary">Download APK</a>
+                                <a href="path/to/app.apk" download class="btn btn-orange">Download APK</a>
                                 <a href="#" class="btn btn-secondary" data-toggle="modal" data-target="#sourcecodeModal2">Buy Source Code</a>
                             </div>
                         </div>
@@ -259,7 +308,7 @@
                     <p>Price: $499</p>
                     <p>This includes the full source code, documentation, and 1 month of support.</p>
                     <!-- Add your payment integration here -->
-                    <button class="btn btn-primary">Proceed to Payment</button>
+                    <button class="btn btn-orange">Proceed to Payment</button>
                 </div>
             </div>
         </div>
@@ -278,7 +327,7 @@
                     <p>Price: $699</p>
                     <p>This includes the full source code, documentation, and 1 month of support.</p>
                     <!-- Add your payment integration here -->
-                    <button class="btn btn-primary">Proceed to Payment</button>
+                    <button class="btn btn-orange">Proceed to Payment</button>
                 </div>
             </div>
         </div>
@@ -289,7 +338,7 @@
         <div class="container">
             <h2>Our Pricing</h2>
             <div class="rate-card-container">
-                <div class="rate-card">
+                <div class="rate-card" data-plan="basic">
                     <h3>Basic</h3>
                     <div class="price">$999</div>
                     <ul>
@@ -298,9 +347,9 @@
                         <li>1 Month Support</li>
                         <li>1 Revision</li>
                     </ul>
-                    <a href="#contact" class="btn">Get Started</a>
+                    <a class="btn" data-bs-toggle="modal" data-bs-target="#basicModal">Get Started</a>
                 </div>
-                <div class="rate-card featured">
+                <div class="rate-card featured" data-plan="pro">
                     <h3>Pro</h3>
                     <div class="price">$2,499</div>
                     <ul>
@@ -310,9 +359,9 @@
                         <li>3 Revisions</li>
                         <li>SEO Optimization</li>
                     </ul>
-                    <a href="#contact" class="btn">Get Started</a>
+                    <a class="btn" data-bs-toggle="modal" data-bs-target="#proModal">Get Started</a>
                 </div>
-                <div class="rate-card">
+                <div class="rate-card" data-plan="enterprise">
                     <h3>Enterprise</h3>
                     <div class="price">Custom</div>
                     <ul>
@@ -322,11 +371,112 @@
                         <li>Unlimited Revisions</li>
                         <li>Full Marketing Package</li>
                     </ul>
-                    <a href="#contact" class="btn">Contact Us</a>
+                    <a class="btn" data-bs-toggle="modal" data-bs-target="#enterpriseModal">Contact Us</a>
                 </div>
             </div>
         </div>
     </section>
+
+    <!-- Modals -->
+    <div class="modal fade" id="basicModal" tabindex="-1" aria-labelledby="basicModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="basicModalLabel">Basic Plan Details</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p>You've selected the Basic Plan for $999. This includes:</p>
+                    <ul>
+                        <li>Simple Android App</li>
+                        <li>Basic Website</li>
+                        <li>1 Month Support</li>
+                        <li>1 Revision</li>
+                    </ul>
+                    <form id="basicPlanForm">
+                        <div class="mb-3">
+                            <label for="basicName" class="form-label">Name</label>
+                            <input type="text" class="form-control" id="basicName" name="name" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="basicEmail" class="form-label">Email</label>
+                            <input type="email" class="form-control" id="basicEmail" name="email" required>
+                        </div>
+                        <button type="submit" class="btn btn-orange">Proceed with Basic Plan</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="proModal" tabindex="-1" aria-labelledby="proModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="proModalLabel">Pro Plan Details</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p>You've selected the Pro Plan for $2,499. This includes:</p>
+                    <ul>
+                        <li>Advanced Android App</li>
+                        <li>Custom Website</li>
+                        <li>3 Months Support</li>
+                        <li>3 Revisions</li>
+                        <li>SEO Optimization</li>
+                    </ul>
+                    <form id="proPlanForm">
+                        <div class="mb-3">
+                            <label for="proName" class="form-label">Name</label>
+                            <input type="text" class="form-control" id="proName" name="name" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="proEmail" class="form-label">Email</label>
+                            <input type="email" class="form-control" id="proEmail" name="email" required>
+                        </div>
+                        <button type="submit" class="btn btn-orange">Proceed with Pro Plan</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="enterpriseModal" tabindex="-1" aria-labelledby="enterpriseModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="enterpriseModalLabel">Enterprise Plan Details</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p>You've selected the Enterprise Plan. This custom solution includes:</p>
+                    <ul>
+                        <li>Complex Android App</li>
+                        <li>Advanced Web Solution</li>
+                        <li>6 Months Support</li>
+                        <li>Unlimited Revisions</li>
+                        <li>Full Marketing Package</li>
+                    </ul>
+                    <p>For a tailored quote and to discuss your specific needs, please fill out the form below:</p>
+                    <form id="enterprisePlanForm">
+                        <div class="mb-3">
+                            <label for="enterpriseName" class="form-label">Name</label>
+                            <input type="text" class="form-control" id="enterpriseName" name="name" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="enterpriseEmail" class="form-label">Email</label>
+                            <input type="email" class="form-control" id="enterpriseEmail" name="email" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="enterpriseMessage" class="form-label">Project Details</label>
+                            <textarea class="form-control" id="enterpriseMessage" name="message" rows="3" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-orange">Request Enterprise Quote</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <!-- Blog -->
     <section id="blog" class="blog-section py-5">
@@ -445,7 +595,7 @@
                         <textarea class="form-control" id="message" rows="4" required></textarea>
                        
                     </div>
-                    <button type="submit" class="btn btn-primary submit-btn">Send Message</button>
+                    <button type="submit" class="btn btn-orange submit-btn">Send Message</button>
                 </form>
             </div>
         </div>

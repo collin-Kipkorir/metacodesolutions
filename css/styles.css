@@ -677,7 +677,7 @@ section h2 {
 
 /* Navbar Styles */
 .navbar {
-    background-color: rgba(12, 24, 36, 0.9);
+    background-color: #0c1824;
     transition: all 0.3s ease;
     padding: 15px 0; /* Add padding to top and bottom */
 }

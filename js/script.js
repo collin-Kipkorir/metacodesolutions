@@ -98,6 +98,7 @@ document.addEventListener('DOMContentLoaded', function() {
         card.addEventListener('mouseenter', function() {
             this.style.transform = 'translateY(-10px)';
             this.style.boxShadow = '0 15px 30px rgba(0, 0, 0, 0.2)';
+            this.style.transition = 'all 0.3s ease';
         });
 
         card.addEventListener('mouseleave', function() {
@@ -106,42 +107,48 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    // Smooth scroll for "Get Started" and "Contact Us" buttons
-    const actionButtons = document.querySelectorAll('.rate-card .btn');
-    actionButtons.forEach(button => {
-        button.addEventListener('click', function(e) {
+    // Handle modal form submissions
+    const modalForms = document.querySelectorAll('.modal form');
+    modalForms.forEach(form => {
+        form.addEventListener('submit', function(e) {
             e.preventDefault();
-            const targetId = this.getAttribute('href');
-            const targetElement = document.querySelector(targetId);
-            targetElement.scrollIntoView({
-                behavior: 'smooth',
-                block: 'start'
-            });
+            const planType = this.closest('.modal').id.replace('Modal', '');
+            const formData = new FormData(this);
+            
+            // Here you would typically send this data to your server
+            console.log(`${planType} Plan submission:`, Object.fromEntries(formData));
+
+            // Show a success message
+            alert(`Thank you for your interest in our ${planType} plan! We'll contact you shortly.`);
+
+            // Close the modal
+            const modal = bootstrap.Modal.getInstance(this.closest('.modal'));
+            modal.hide();
         });
     });
 
-    // Optional: Add a simple animation to price on page load
+    // Animate price on page load
     const prices = document.querySelectorAll('.price');
     prices.forEach(price => {
-        let startValue = 0;
         const endValue = parseInt(price.textContent.replace(/\D/g,''));
-        const duration = 1000;
-        const startTime = new Date().getTime();
+        if (!isNaN(endValue)) {
+            animateValue(price, 0, endValue, 1500);
+        }
+    });
 
-        const animateValue = () => {
-            const currentTime = new Date().getTime();
-            const elapsedTime = currentTime - startTime;
-            if (elapsedTime < duration) {
-                const tempValue = Math.round((elapsedTime / duration) * endValue);
-                price.textContent = isNaN(tempValue) ? 'Custom' : '$' + tempValue;
-                requestAnimationFrame(animateValue);
-            } else {
-                price.textContent = isNaN(endValue) ? 'Custom' : '$' + endValue;
+    // Function to animate value
+    function animateValue(obj, start, end, duration) {
+        let startTimestamp = null;
+        const step = (timestamp) => {
+            if (!startTimestamp) startTimestamp = timestamp;
+            const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+            obj.innerHTML = '$' + Math.floor(progress * (end - start) + start);
+            if (progress < 1) {
+                window.requestAnimationFrame(step);
             }
         };
-
-        animateValue();
-    });
+        window.requestAnimationFrame(step);
+    }
 });
 
 document.addEventListener('DOMContentLoaded', function() {
@@ -236,4 +243,3 @@ document.addEventListener('DOMContentLoaded', function() {
         // You can replace this with a more user-friendly notification
     }
 });
-
