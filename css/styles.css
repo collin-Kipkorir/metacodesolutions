@@ -1559,3 +1559,46 @@ textarea.form-control {
     border-radius: 50%;
     z-index: 0;
 }
+.about-image {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.team-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px; /* Adjust this value to control spacing between team members */
+    width: 100%;
+}
+
+.team-member {
+    flex-basis: calc(50% - 10px); /* 2 columns by default, adjust the 10px if you change the gap */
+    max-width: 250px; /* Adjust this value as needed */
+}
+
+@media (max-width: 768px) {
+    .team-grid {
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        overflow-x: auto; /* Allow horizontal scrolling if needed */
+        padding: 20px 0; /* Add some vertical padding */
+    }
+
+    .team-member {
+        flex: 0 0 auto; /* Don't allow shrinking */
+        width: 80%; /* Adjust this value to control the width on mobile */
+        max-width: 200px; /* Limit the maximum width */
+        margin: 0 10px; /* Add some horizontal margin */
+    }
+}
+
+/* Ensure images are responsive */
+.team-member img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+}

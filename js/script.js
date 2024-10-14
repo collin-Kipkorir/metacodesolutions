@@ -1,15 +1,15 @@
-// Navbar scroll effect
-window.addEventListener('scroll', function() {
-    var navbar = document.querySelector('.navbar');
-    if (window.scrollY > 50) {
-        navbar.classList.add('navbar-scrolled');
-    } else {
-        navbar.classList.remove('navbar-scrolled');
-    }
-});
+document.addEventListener('DOMContentLoaded', function() {
+    // Navbar scroll effect
+    window.addEventListener('scroll', function() {
+        var navbar = document.querySelector('.navbar');
+        if (window.scrollY > 50) {
+            navbar.classList.add('navbar-scrolled');
+        } else {
+            navbar.classList.remove('navbar-scrolled');
+        }
+    });
 
-// Active link highlighting
-document.addEventListener("DOMContentLoaded", function() {
+    // Active link highlighting
     const navLinks = document.querySelectorAll('.navbar-nav .nav-link');
     const sections = document.querySelectorAll('section');
 
@@ -29,24 +29,23 @@ document.addEventListener("DOMContentLoaded", function() {
             }
         });
     });
-});
-// Back to Top button
-window.onscroll = function() {scrollFunction()};
 
-function scrollFunction() {
-    if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
-        document.getElementById("back-to-top").style.display = "block";
-    } else {
-        document.getElementById("back-to-top").style.display = "none";
+    // Back to Top button
+    function scrollFunction() {
+        if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+            document.getElementById("back-to-top").style.display = "block";
+        } else {
+            document.getElementById("back-to-top").style.display = "none";
+        }
     }
-}
 
-document.getElementById("back-to-top").onclick = function() {
-    document.body.scrollTop = 0; // For Safari
-    document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
-}
+    window.onscroll = scrollFunction;
 
-document.addEventListener('DOMContentLoaded', function() {
+    document.getElementById("back-to-top").onclick = function() {
+        document.body.scrollTop = 0; // For Safari
+        document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+    };
+
     // Initialize all modals
     var modals = document.querySelectorAll('.modal');
     modals.forEach(function(modal) {
@@ -67,11 +66,7 @@ document.addEventListener('DOMContentLoaded', function() {
     var paymentButtons = document.querySelectorAll('.modal-body .btn-primary');
     paymentButtons.forEach(function(button) {
         button.addEventListener('click', function() {
-            // Here you would typically integrate with a payment gateway
-            // For this example, we'll just show an alert
             alert('Redirecting to payment gateway...');
-            
-            // Close the modal
             var modal = button.closest('.modal');
             var bootstrapModal = bootstrap.Modal.getInstance(modal);
             bootstrapModal.hide();
@@ -87,13 +82,9 @@ document.addEventListener('DOMContentLoaded', function() {
             bootstrapModal.hide();
         });
     });
-});
 
-document.addEventListener('DOMContentLoaded', function() {
-    // Get all rate cards
+    // Rate card hover effects
     const rateCards = document.querySelectorAll('.rate-card');
-
-    // Add hover effect to rate cards
     rateCards.forEach(card => {
         card.addEventListener('mouseenter', function() {
             this.style.transform = 'translateY(-10px)';
@@ -115,13 +106,10 @@ document.addEventListener('DOMContentLoaded', function() {
             const planType = this.closest('.modal').id.replace('Modal', '');
             const formData = new FormData(this);
             
-            // Here you would typically send this data to your server
             console.log(`${planType} Plan submission:`, Object.fromEntries(formData));
 
-            // Show a success message
             alert(`Thank you for your interest in our ${planType} plan! We'll contact you shortly.`);
 
-            // Close the modal
             const modal = bootstrap.Modal.getInstance(this.closest('.modal'));
             modal.hide();
         });
@@ -136,7 +124,6 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-    // Function to animate value
     function animateValue(obj, start, end, duration) {
         let startTimestamp = null;
         const step = (timestamp) => {
@@ -149,19 +136,22 @@ document.addEventListener('DOMContentLoaded', function() {
         };
         window.requestAnimationFrame(step);
     }
-});
 
-document.addEventListener('DOMContentLoaded', function() {
+    // Contact form submission
     const form = document.getElementById('contact-form');
     const nameInput = document.getElementById('name');
     const emailInput = document.getElementById('email');
     const messageInput = document.getElementById('message');
-
+    
     form.addEventListener('submit', function(e) {
+        console.log('Form submission intercepted');
         e.preventDefault();
         
         if (validateForm()) {
+            console.log('Form is valid, sending data');
             sendFormData();
+        } else {
+            console.log('Form validation failed');
         }
     });
 
@@ -212,34 +202,47 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     function sendFormData() {
+        console.log('Sending form data');
         const formData = new FormData(form);
         
         fetch('/submit-form', {
             method: 'POST',
-            body: formData
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(Object.fromEntries(formData))
         })
-        .then(response => response.json())
-        .then(data => {
-            if (data.success) {
-                showSuccessMessage();
-                form.reset();
-            } else {
-                showErrorMessage(data.message);
+        .then(response => {
+            console.log('Received response', response);
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
             }
+            return response.json();
+        })
+        .then(data => {
+            console.log('Parsed response data', data);
+            Swal.fire({
+                title: 'WOW!',
+                text: 'Your message has been sent successfully!',
+                icon: 'success',
+                confirmButtonText: 'Cool!',
+                showClass: {
+                    popup: 'animate__animated animate__fadeInDown'
+                },
+                hideClass: {
+                    popup: 'animate__animated animate__fadeOutUp'
+                }
+            });
+            form.reset();
         })
         .catch(error => {
             console.error('Error:', error);
-            showErrorMessage('An error occurred. Please try again later.');
+            Swal.fire({
+                title: 'Oops...',
+                text: 'Something went wrong! Please try again later.',
+                icon: 'error',
+                confirmButtonText: 'OK'
+            });
         });
-    }
-
-    function showSuccessMessage() {
-        alert('Message sent successfully!');
-        // You can replace this with a more user-friendly notification
-    }
-
-    function showErrorMessage(message) {
-        alert(message);
-        // You can replace this with a more user-friendly notification
     }
 });
