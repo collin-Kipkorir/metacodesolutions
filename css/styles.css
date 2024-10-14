@@ -1560,39 +1560,44 @@ textarea.form-control {
     z-index: 0;
 }
 .about-image {
-    display: flex;
-    justify-content: center;
-    align-items: center;
     width: 100%;
+    overflow-x: hidden; /* Prevent horizontal scrolling */
 }
 
 .team-grid {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 20px; /* Adjust this value to control spacing between team members */
+    gap: 20px;
     width: 100%;
 }
 
 .team-member {
-    flex-basis: calc(50% - 10px); /* 2 columns by default, adjust the 10px if you change the gap */
-    max-width: 250px; /* Adjust this value as needed */
+    flex: 0 1 calc(50% - 10px);
+    max-width: 250px;
 }
 
 @media (max-width: 768px) {
-    .team-grid {
-        flex-direction: row;
+    .about-image {
+        display: flex;
         justify-content: center;
         align-items: center;
-        overflow-x: auto; /* Allow horizontal scrolling if needed */
-        padding: 20px 0; /* Add some vertical padding */
+    }
+
+    .team-grid {
+        display: flex;
+        flex-wrap: nowrap;
+        justify-content: center;
+        align-items: center;
+        width: auto;
+        max-width: 100%;
     }
 
     .team-member {
-        flex: 0 0 auto; /* Don't allow shrinking */
-        width: 80%; /* Adjust this value to control the width on mobile */
-        max-width: 200px; /* Limit the maximum width */
-        margin: 0 10px; /* Add some horizontal margin */
+        flex: 0 0 auto;
+        width: 45%; /* Adjust this value as needed */
+        max-width: 150px;
+        margin: 0 5px;
     }
 }
 
@@ -1601,4 +1606,20 @@ textarea.form-control {
     width: 100%;
     height: auto;
     object-fit: cover;
+}
+
+/* Style for member info */
+.member-info {
+    text-align: center;
+    margin-top: 10px;
+}
+
+.member-info h4 {
+    margin: 0;
+    font-size: 1.1em;
+}
+
+.member-info p {
+    margin: 5px 0 0;
+    font-size: 0.9em;
 }
