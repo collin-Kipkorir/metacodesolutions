@@ -13,10 +13,43 @@
 <link rel="icon" type="image/png" sizes="16x16" href="images/logo.webp">
 <link rel="manifest" href="/site.webmanifest">
 
+
     <style>
         :root {
           --primary-color: #ffa500;
         }
+        .about-features {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+.about-features li {
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+}
+
+.circle-check {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    color: #0c1824;
+    border-radius: 50%;
+    border: 2px solid var(--primary-color); /* Change color and thickness as needed */
+    margin-right: 10px;
+    position: relative;
+}
+
+.circle-check::after {
+    content: '\2714'; /* Unicode character for checkmark */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: var(--primary-color); /* Match this with the border color */
+    font-size: 10px; /* Reduce this value to make the check smaller */
+    line-height: 1; /* Ensures vertical centering */
+}
 
         .btn-orange {
           background-color: var(--primary-color);
@@ -111,9 +144,9 @@
                     <p class="lead">Innovating the digital landscape since 2010</p>
                     <p>At Metacode Solutions, we're passionate about creating cutting-edge software solutions that drive business growth and enhance user experiences. Our team of expert developers and designers work tirelessly to bring your ideas to life.</p>
                     <ul class="about-features">
-                        <li><i class="fas fa-check-circle"></i> 10+ years of industry experience</li>
-                        <li><i class="fas fa-check-circle"></i> 100+ successful projects delivered</li>
-                        <li><i class="fas fa-check-circle"></i> Team of 50+ skilled professionals</li>
+                        <li><span class="circle-check"></span> 10+ years of industry experience</li>
+                        <li><span class="circle-check"></span> 100+ successful projects delivered</li>
+                        <li><span class="circle-check"></span> Team of 50+ skilled professionals</li>
                     </ul>
                     <a href="#contact" class="btn btn-orange">Get in Touch</a>
                 </div>
@@ -307,7 +340,7 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <p>Price: $499</p>
+                    <p>Price: $200</p>
                     <p>This includes the full source code, documentation, and 1 month of support.</p>
                     <!-- Add your payment integration here -->
                     <button class="btn btn-orange">Proceed to Payment</button>
@@ -326,7 +359,7 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <p>Price: $699</p>
+                    <p>Price: $150</p>
                     <p>This includes the full source code, documentation, and 1 month of support.</p>
                     <!-- Add your payment integration here -->
                     <button class="btn btn-orange">Proceed to Payment</button>
@@ -342,7 +375,7 @@
             <div class="rate-card-container">
                 <div class="rate-card" data-plan="basic">
                     <h3>Basic</h3>
-                    <div class="price">$999</div>
+                    <div class="price">$200</div>
                     <ul>
                         <li>Simple Android App</li>
                         <li>Basic Website</li>
@@ -353,7 +386,7 @@
                 </div>
                 <div class="rate-card featured" data-plan="pro">
                     <h3>Pro</h3>
-                    <div class="price">$2,499</div>
+                    <div class="price">$700</div>
                     <ul>
                         <li>Advanced Android App</li>
                         <li>Custom Website</li>
