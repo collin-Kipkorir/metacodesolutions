@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <script type="module" src="https://www.gstatic.com/firebasejs/9.0.0/firebase-app.js"></script>
+    <script type="module" src="https://www.gstatic.com/firebasejs/9.0.0/firebase-database.js"></script>
+</head>
+<body class="bg-gray-100">
+    <div class="container mx-auto p-6">
+        <h1 class="text-3xl font-bold mb-6">Admin Dashboard</h1>
+        
+        <!-- Search Bar -->
+        <div class="mb-4">
+            <input type="text" id="searchInput" placeholder="Search messages..." class="border border-gray-300 rounded p-2 w-full md:w-1/3" oninput="searchMessages()">
+        </div>
+
+        <div id="messageTableContainer" class="overflow-x-auto">
+            <table class="min-w-full bg-white border border-gray-300 rounded-lg shadow-md">
+                <thead>
+                    <tr>
+                        <th class="border px-4 py-2">ID</th>
+                        <th class="border px-4 py-2">Name</th>
+                        <th class="border px-4 py-2">Email</th>
+                        <th class="border px-4 py-2">Message</th>
+                        <th class="border px-4 py-2">Status</th>
+                        <th class="border px-4 py-2">Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="messageTableBody">
+                    <!-- Messages will be populated here -->
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Pagination -->
+        <div id="pagination" class="mt-4 flex justify-center">
+            <button id="prevPage" class="bg-blue-500 text-white px-4 py-2 rounded mr-2" onclick="changePage(-1)">Previous</button>
+            <button id="nextPage" class="bg-blue-500 text-white px-4 py-2 rounded" onclick="changePage(1)">Next</button>
+        </div>
+    </div>
+
+    <script type="module">
+        // Import Firebase functions
+        import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.0.0/firebase-app.js';
+        import { getDatabase, ref, onValue, remove } from 'https://www.gstatic.com/firebasejs/9.0.0/firebase-database.js';
+
+        // Your Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyBO9TitTfnCA7LlqMCiF7SjTBHXHnc7CdU",
+            authDomain: "metacode-message-stsyem.firebaseapp.com",
+            projectId: "metacode-message-stsyem",
+            storageBucket: "metacode-message-stsyem.firebasestorage.app",
+            messagingSenderId: "418039923746",
+            appId: "1:418039923746:web:1690852b2d4c93c6d2f67b",
+            measurementId: "G-F2GXH1ZJSC"
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const db = getDatabase(app);
+
+        let currentPage = 1;
+        const messagesPerPage = 5;
+        let messages = [];
+
+        // Fetch messages from Firebase
+        const fetchMessages = async () => {
+            const messagesRef = ref(db, 'messages');
+            onValue(messagesRef, (snapshot) => {
+                messages = snapshot.val() || {};
+                renderMessages();
+            });
+        };
+
+        // Render messages with pagination
+        const renderMessages = () => {
+            const tableBody = document.getElementById('messageTableBody');
+            tableBody.innerHTML = ''; // Clear existing messages
+
+            const messageArray = Object.entries(messages);
+            const start = (currentPage - 1) * messagesPerPage;
+            const end = start + messagesPerPage;
+            const paginatedMessages = messageArray.slice(start, end);
+
+            paginatedMessages.forEach(([id, message]) => {
+                tableBody.innerHTML += `
+                    <tr>
+                        <td class="border px-4 py-2">${id}</td>
+                        <td class="border px-4 py-2">${message.name}</td>
+                        <td class="border px-4 py-2">${message.email}</td>
+                        <td class="border px-4 py-2">${message.message}</td>
+                        <td class="border px-4 py-2">${message.status || 'Unread'}</td>
+                        <td class="border px-4 py-2">
+                            <button onclick="deleteMessage('${id}')" class="bg-red-500 text-white px-2 py-1 rounded">Delete</button>
+                        </td>
+                    </tr>
+                `;
+            });
+
+            updatePagination();
+        };
+
+        // Update pagination buttons
+        const updatePagination = () => {
+            const totalMessages = Object.keys(messages).length;
+            const totalPages = Math.ceil(totalMessages / messagesPerPage);
+            document.getElementById('prevPage').disabled = currentPage === 1;
+            document.getElementById('nextPage').disabled = currentPage === totalPages;
+        };
+
+        // Change page
+        const changePage = (direction) => {
+            currentPage += direction;
+            renderMessages();
+        };
+
+        // Search messages
+        const searchMessages = () => {
+            const searchInput = document.getElementById('searchInput').value.toLowerCase();
+            const filteredMessages = Object.entries(messages).filter(([id, message]) => {
+                return message.name.toLowerCase().includes(searchInput) || 
+                       message.email.toLowerCase().includes(searchInput) || 
+                       message.message.toLowerCase().includes(searchInput);
+            });
+            renderFilteredMessages(filteredMessages);
+        };
+
+        // Render filtered messages
+        const renderFilteredMessages = (filteredMessages) => {
+            const tableBody = document.getElementById('messageTableBody');
+            tableBody.innerHTML = ''; // Clear existing messages
+
+            filteredMessages.forEach(([id, message]) => {
+                tableBody.innerHTML += `
+                    <tr>
+                        <td class="border px-4 py-2">${id}</td>
+                        <td class="border px-4 py-2">${message.name}</td>
+                        <td class="border px-4 py-2">${message.email}</td>
+                        <td class="border px-4 py-2">${message.message}</td>
+                        <td class="border px-4 py-2">${message.status || 'Unread'}</td>
+                        <td class="border px-4 py-2">
+                            <button onclick="deleteMessage('${id}')" class="bg-red-500 text-white px-2 py-1 rounded">Delete</button>
+                        </td>
+                    </tr>
+                `;
+            });
+        };
+
+        // Delete message function
+        const deleteMessage = async (id) => {
+            const messageRef = ref(db, `messages/${id}`);
+            await remove(messageRef)
+                .then(() => {
+                    fetchMessages(); // Refresh the message list
+                })
+                .catch((error) => {
+                    console.error('Error deleting message:', error);
+                });
+        };
+
+        // Fetch messages on page load
+        document.addEventListener('DOMContentLoaded', fetchMessages);
+    </script>
+</body>
+</html>
